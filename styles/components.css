@@ -1,0 +1,1137 @@
+/* ============================================
+   SECTION 1: Announcement Bar + Navbar + Hero
+   ============================================ */
+.announcement-bar {
+    background: #fff;
+    color: #000;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    padding: 7px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.header {
+    background: #000;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.sec-header .header-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.logo-img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+/* Hero */
+.sec-hero {
+    position: relative;
+    height: calc(100vh - 75px);
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+}
+
+.hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35%;
+    background: linear-gradient(to top, #000 0%, transparent 100%);
+}
+
+
+/* ============================================
+   USP TICKER
+   ============================================ */
+.ticker-bar {
+    background: #fff;
+    color: #000;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 30s linear infinite;
+}
+
+.ticker-set {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding-right: 32px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.ticker-set .sep {
+    opacity: 0.25;
+    font-weight: 300;
+}
+
+@keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+
+/* ============================================
+   SECTION: VIDEO SHOP
+   ============================================ */
+.sec-video-shop {
+    background: #000;
+    padding: 80px 0 60px;
+}
+
+/* Funnel Title Effect (Fixed Perspective) */
+.funnel-title {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 80px;
+    background: #000;
+    border: 2px solid white;
+    /* 3D Perspective Funnel instead of clipping */
+    transform: perspective(1200px) rotateX(10deg);
+    transform-origin: top;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    margin-bottom: 32px;
+}
+
+.funnel-title--blue {
+    border-color: hsl(var(--accent-blue));
+}
+
+.funnel-title__label {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.7);
+    font-family: 'Bebas Neue', sans-serif;
+    margin-bottom: 4px;
+}
+
+.funnel-title__text {
+    font-size: clamp(3.5rem, 9vw, 6.5rem);
+    font-weight: 900;
+    font-style: italic;
+    line-height: 0.8;
+    letter-spacing: -0.01em;
+    color: #fff;
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    transform: scaleY(1.1);
+}
+
+.sec-video-shop__sub {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    font-family: 'Bebas Neue', sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Video Scroll */
+.video-scroll {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.vcard {
+    flex: 0 0 200px;
+}
+
+.vcard__frame {
+    aspect-ratio: 9/16;
+    background: #e8e8e8;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.vcard__info {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.vcard__thumb {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.vcard__name {
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.3;
+}
+
+.vcard__meta {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+}
+
+.vcard__discount {
+    font-size: 10px;
+    font-weight: 700;
+    color: hsl(var(--accent-green));
+}
+
+
+/* ============================================
+   SECTION: SCIENCE HUD
+   ============================================ */
+.sec-science-hud {
+    position: relative;
+    padding: 100px 0 160px;
+    background: #000;
+    overflow: hidden;
+}
+
+.science-hud-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.science-hud-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.science-hud-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.9) 100%),
+                radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.4) 100%);
+}
+
+.science-modern-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hud-grid-top {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 64px;
+    margin-bottom: 80px;
+}
+
+.hud-grid-bot {
+    display: flex;
+    justify-content: center;
+    gap: 120px;
+}
+
+.sci-stat {
+    max-width: 320px;
+}
+
+.sci-stat__label-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.sci-stat__val {
+    font-size: clamp(4rem, 8vw, 6rem);
+    font-weight: 900;
+    font-style: italic;
+    line-height: 0.85;
+    font-family: 'Anton', sans-serif;
+    color: #fff;
+    letter-spacing: -0.02em;
+}
+
+.sci-stat__label {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    color: #fff;
+    font-family: 'Anton', sans-serif;
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+}
+
+.sci-stat__desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.7);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 400;
+    max-width: 280px;
+}
+
+.science-modern-title {
+    position: absolute;
+    bottom: -60px;
+    right: 0;
+    text-align: right;
+    z-index: 3;
+}
+
+.glow-text {
+    font-size: clamp(6rem, 15vw, 12rem);
+    font-weight: 900;
+    font-style: italic;
+    line-height: 0.8;
+    text-transform: uppercase;
+    color: #fff;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: -0.05em;
+    text-shadow: 0 0 30px rgba(255,255,255,0.6);
+    opacity: 0.9;
+}
+
+
+/* ============================================
+   SECTION 3: SHOP OUR SUPERMINTS
+   ============================================ */
+.sec-products {
+    background: #000;
+    padding: 80px 0;
+}
+
+.sec-products__heading {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.boxed-title {
+    display: inline-block;
+    border: 3px solid hsl(var(--accent-blue));
+    padding: 16px 48px;
+    text-align: center;
+}
+
+.boxed-title__top {
+    display: block;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-style: italic;
+    color: #fff;
+}
+
+.boxed-title__bot {
+    display: block;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 0.95;
+    margin-top: -4px;
+}
+
+/* Product Grid */
+.prod-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.prod-card {
+    background: #fff;
+    overflow: hidden;
+}
+
+.prod-card__img {
+    position: relative;
+    background: #f2f2f2;
+    padding: 40px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 320px;
+}
+
+.prod-card__img img {
+    max-height: 260px;
+    object-fit: contain;
+}
+
+.prod-card__badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: hsl(var(--accent-green));
+    color: #000;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.prod-card__wt {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: hsl(var(--primary));
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+}
+
+.prod-card__body {
+    padding: 20px 16px;
+    text-align: center;
+    background: #fff;
+    color: #000;
+}
+
+.prod-card__stars {
+    font-size: 13px;
+    color: #000;
+}
+
+.prod-card__stars span {
+    color: #777;
+}
+
+.prod-card__reviews {
+    font-size: 11px;
+    color: #777;
+    margin-bottom: 8px;
+}
+
+.prod-card__title {
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.3;
+    color: #000;
+    margin-bottom: 16px;
+}
+
+.prod-card__cta {
+    display: block;
+    width: 100%;
+    background: #e60000;
+    color: #fff;
+    border: none;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.prod-card__cta:hover {
+    background: #ff1a1a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(230,0,0,0.35);
+}
+
+
+/* ============================================
+   SECTION 4A: INGREDIENTS + SCIENCE
+   ============================================ */
+.sec-science {
+    background: linear-gradient(135deg, #080808, #111);
+    padding: 80px 0;
+}
+
+.science-layout {
+    display: flex;
+    gap: 32px;
+}
+
+.ingredients-grid {
+    flex: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.ing-card {
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 24px;
+}
+
+.ing-card__dose {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+}
+
+.ing-card__name {
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #fff;
+    margin-top: 2px;
+}
+
+.ing-card__desc {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 12px;
+    line-height: 1.55;
+}
+
+.science-label {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.science-label h2 {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 900;
+    text-align: right;
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+
+/* ============================================
+   SECTION 4B: GIVE YOUR BRAIN UNFAIR ADVANTAGE
+   ============================================ */
+.sec-advantage {
+    display: flex;
+    min-height: 420px;
+    background: #111;
+}
+
+.sec-advantage__img {
+    flex: 1;
+    overflow: hidden;
+}
+
+.sec-advantage__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sec-advantage__text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px 64px;
+    background: #111;
+}
+
+.sec-advantage__text h2 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.05;
+    color: #fff;
+    font-style: italic;
+}
+
+
+/* ============================================
+   SECTION 4C: AS PURE AS IT GETS
+   ============================================ */
+.sec-purity {
+    background: #e8e4dc;
+    color: #000;
+    padding: 64px 0;
+}
+
+.purity-layout {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+
+.purity-left {
+    flex: 1;
+}
+
+.purity-left h3 {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    color: #000;
+    font-style: italic;
+}
+
+.check-list {
+    list-style: none;
+    padding: 0;
+}
+
+.check-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 8px 0;
+    color: #222;
+}
+
+.chk {
+    color: hsl(var(--accent-green));
+    font-weight: 900;
+    font-size: 18px;
+}
+
+.purity-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.purity-right img {
+    max-height: 300px;
+    object-fit: contain;
+}
+
+
+/* ============================================
+   SECTION 4D: BENEFITS
+   ============================================ */
+.sec-benefits {
+    background: #e8e4dc;
+    color: #000;
+    padding: 48px 0 64px;
+    text-align: center;
+}
+
+.sec-benefits__title {
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 32px;
+}
+
+.sec-benefits__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+.tag {
+    border: 2px solid #000;
+    padding: 10px 28px;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    cursor: default;
+    transition: 0.2s ease;
+}
+
+.tag:hover {
+    background: #000;
+    color: #fff;
+}
+
+
+/* ============================================
+   SECTION 4E: WHEN / HOW
+   ============================================ */
+.sec-usage {
+    display: flex;
+}
+
+.sec-usage__block {
+    flex: 1;
+    padding: 64px 48px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sec-usage__when {
+    background: #b91c1c;
+    color: #fff;
+}
+
+.sec-usage__how {
+    background: #1a1a2e;
+    color: #fff;
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.sec-usage__inner h3 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.sec-usage__inner p {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.6;
+    letter-spacing: 0.03em;
+    opacity: 0.85;
+}
+
+.sec-usage__img {
+    flex-shrink: 0;
+}
+
+.sec-usage__img img {
+    max-height: 200px;
+    object-fit: contain;
+}
+
+
+/* ============================================
+   SECTION 5A: SOCIAL PROOF + FAQ
+   ============================================ */
+.sec-faq-social {
+    display: flex;
+    min-height: 500px;
+}
+
+/* LEFT: FAQ with sophisticated yellow/gold bg */
+.sec-faq-social__faq {
+    flex: 1;
+    background: #FFD700; /* Pure Vibrant Gold */
+    color: #000;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.faq-item {
+    border-bottom: 2px solid rgba(0,0,0,0.15);
+}
+
+.faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 18px 0;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    color: #000;
+    text-align: left;
+    font-family: inherit;
+}
+
+.faq-icon {
+    font-size: 22px;
+    font-weight: 300;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 12px;
+}
+
+.faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.faq-a p {
+    padding-bottom: 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(0,0,0,0.7);
+}
+
+.faq-item.active .faq-a {
+    max-height: 200px;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-explore {
+    display: inline-block;
+    margin-top: 24px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: underline;
+    color: #000;
+}
+
+/* RIGHT: Influencer visual */
+.sec-faq-social__visual {
+    flex: 1.2;
+    position: relative;
+    overflow: hidden;
+    background: #c0392b;
+}
+
+.sec-faq-social__visual > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Comment Bubbles (Instagram-style) */
+.comment-bubble {
+    position: absolute;
+    background: #fff;
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    white-space: nowrap;
+    z-index: 2;
+    animation: floatBubble 5s ease-in-out infinite;
+}
+
+.cb-user {
+    font-weight: 800;
+    color: #333;
+}
+
+.cb-1 { top: 8%; left: 15%; animation-delay: 0s; }
+.cb-2 { top: 28%; right: 5%; animation-delay: 1s; }
+.cb-3 { top: 55%; left: 25%; animation-delay: 2s; }
+.cb-4 { bottom: 12%; right: 15%; animation-delay: 3s; }
+
+@keyframes floatBubble {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+
+/* ============================================
+   SECTION: FEATURE TILES
+   ============================================ */
+.sec-feature-tiles {
+    background: #1a1a1a;
+    padding: 64px 0;
+}
+
+.tiles-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.ftile {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ftile__header {
+    padding: 24px 20px;
+    min-height: 120px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.ftile__header h4 {
+    font-size: 16px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.ftile__body {
+    padding: 16px 20px 20px;
+}
+
+.ftile__body p {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.5;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+    background: #111;
+    padding: 64px 0 0;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-logo a {
+    font-size: 1.6rem;
+    font-weight: 900;
+    font-style: italic;
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-cols {
+    display: flex;
+    gap: 64px;
+}
+
+.footer-cols ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-cols li {
+    margin-bottom: 8px;
+}
+
+.footer-cols a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.footer-cols a:hover {
+    color: #fff;
+}
+
+.footer-legal {
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    padding-bottom: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-huge {
+    font-size: clamp(12rem, 25vw, 38rem);
+    font-weight: 950;
+    line-height: 0.7;
+    color: rgba(255,255,255,0.04);
+    text-align: center;
+    pointer-events: none;
+    white-space: nowrap;
+    letter-spacing: -0.04em;
+    padding-bottom: 0;
+    margin-top: -40px;
+}
+
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+    .prod-grid { grid-template-columns: repeat(2, 1fr); }
+    .tiles-grid { grid-template-columns: repeat(2, 1fr); }
+    .ingredients-grid { grid-template-columns: repeat(2, 1fr); }
+    .science-layout { flex-direction: column; }
+    .sec-social { flex-direction: column; }
+    .sec-advantage { flex-direction: column; }
+    .sec-usage { flex-direction: column; }
+    .purity-layout { flex-direction: column; }
+}
+
+/* ============================================
+   BANNERS & BLOGS
+   ============================================ */
+.sec-banners {
+    background: #000;
+    padding: 60px 0;
+}
+
+.banner-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.banner-box {
+    aspect-ratio: 1/1.2;
+    background: #111;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.banner-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.banner-box:hover img {
+    transform: scale(1.05);
+}
+
+.mobile-banner {
+    display: none;
+}
+
+.sec-blogs {
+    background: #000;
+    padding: 20px 0 100px;
+}
+
+.blogs-label {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.blog-row {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+}
+
+.blog-card {
+    flex: 0 1 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: transparent;
+    transition: 0.3s ease;
+}
+
+.blog-card__img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.blog-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.blog-card__title {
+    font-size: 18px;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    line-height: 1.1;
+    color: #fff;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: -0.01em;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN (MOBILE)
+   ============================================ */
+@media (max-width: 1024px) {
+    .hud-grid-top { grid-template-columns: 1fr; gap: 40px; }
+    .hud-grid-bot { flex-direction: column; gap: 40px; align-items: start; }
+    .hud-grid-bot .sci-stat { justify-content: flex-start; }
+    .blog-row { flex-direction: column; align-items: center; }
+}
+
+@media (max-width: 768px) {
+    /* Layout Overrides */
+    .container { padding: 0 20px; }
+    
+    .prod-grid { grid-template-columns: 1fr; gap: 24px; }
+    
+    .science-hud-bg { min-height: 120vh; }
+    .hud-grid-top { gap: 32px; }
+    .hud-grid-bot { gap: 32px; }
+    
+    .sec-advantage { flex-direction: column; }
+    .sec-advantage__text { padding: 32px 24px; text-align: center; }
+    
+    .purity-layout { flex-direction: column; text-align: center; }
+    .check-list li { justify-content: center; }
+    
+    .sec-usage { flex-direction: column; }
+    .sec-usage__block { padding: 48px 24px; }
+    .sec-usage__how { flex-direction: column; align-items: center; text-align: center; }
+    
+    .sec-faq-social { flex-direction: column; }
+    .sec-faq-social__faq { padding: 48px 24px; }
+    .sec-faq-social__visual { height: 400px; }
+    
+    .banner-grid { display: none; }
+    .mobile-banner { display: block; border-radius: 8px; overflow: hidden; }
+    
+    .tiles-grid { grid-template-columns: 1fr; }
+    
+    .blog-row { flex-direction: column; gap: 32px; }
+    .blog-card { flex: 0 1 auto; width: 100%; }
+}
+
+@media (max-width: 480px) {
+    .funnel-title { padding: 16px 32px; }
+    .funnel-title__text { font-size: 2.8rem; }
+    .glow-text { font-size: 4rem; text-align: center; width: 100%; right: auto; left: 0; bottom: 20px; }
+    .sci-stat__val { font-size: 3.5rem; }
+    .sci-stat__label { font-size: 1.8rem; }
+}

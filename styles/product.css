@@ -1,0 +1,322 @@
+/* ============================================
+   Product Page (PDP) Styles
+   ============================================ */
+
+.pdp-hero {
+    background: #fff;
+    color: #000;
+    padding: 48px 0 64px;
+}
+
+.pdp-layout {
+    display: flex;
+    gap: 64px;
+    align-items: flex-start;
+}
+
+/* ---- Left: Info ---- */
+.pdp-info {
+    flex: 1;
+    max-width: 480px;
+}
+
+.pdp-title {
+    font-size: 1.6rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.15;
+    color: #000;
+    margin-bottom: 16px;
+}
+
+.pdp-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.pdp-price {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #000;
+}
+
+.pdp-mrp {
+    font-size: 1rem;
+    color: #999;
+    text-decoration: line-through;
+}
+
+.pdp-tax {
+    font-size: 11px;
+    color: #999;
+}
+
+.pdp-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.pdp-stars {
+    color: #f59e0b;
+    font-size: 16px;
+}
+
+.pdp-review-ct {
+    font-size: 13px;
+    color: #666;
+}
+
+.pdp-desc {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.65;
+    margin-bottom: 24px;
+}
+
+/* Variants */
+.pdp-variants, .pdp-sizes, .pdp-qty {
+    margin-bottom: 20px;
+}
+
+.pdp-variants__label, .pdp-sizes__label, .pdp-qty__label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+    color: #000;
+}
+
+.pdp-variants__row {
+    display: flex;
+    gap: 10px;
+}
+
+.pdp-variant {
+    width: 56px;
+    height: 56px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 4px;
+    background: #fff;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.pdp-variant.active {
+    border-color: #000;
+}
+
+.pdp-variant img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Sizes */
+.pdp-sizes__row {
+    display: flex;
+    gap: 10px;
+}
+
+.pdp-size {
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    color: #000;
+    transition: 0.2s ease;
+}
+
+.pdp-size.active {
+    border-color: #000;
+    background: #000;
+    color: #fff;
+}
+
+/* Quantity */
+.pdp-qty__control {
+    display: inline-flex;
+    align-items: center;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.pdp-qty__btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    font-weight: 700;
+    background: #f5f5f5;
+    border: none;
+    cursor: pointer;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.15s ease;
+}
+
+.pdp-qty__btn:hover {
+    background: #e0e0e0;
+}
+
+.pdp-qty__val {
+    width: 48px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+}
+
+/* ATC Button */
+.pdp-atc {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: #000;
+    color: #fff;
+    border: 2px solid #000;
+    cursor: pointer;
+    transition: 0.2s ease;
+    margin-bottom: 16px;
+}
+
+.pdp-atc:hover {
+    background: #222;
+}
+
+.pdp-delivery {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* Payment Icons */
+.pdp-payments {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.pay-icon {
+    font-size: 11px;
+    font-weight: 700;
+    color: #888;
+    padding: 4px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f9f9f9;
+}
+
+
+/* ---- Right: Gallery ---- */
+.pdp-gallery {
+    flex: 1.2;
+    position: sticky;
+    top: 100px;
+}
+
+.pdp-main-image {
+    position: relative;
+    background: #f5f5f5;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.pdp-main-image img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+/* Nav Arrows */
+.pdp-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,0.06);
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s ease;
+}
+
+.pdp-nav:hover {
+    background: rgba(0,0,0,0.12);
+}
+
+.pdp-nav--prev { left: 12px; }
+.pdp-nav--next { right: 12px; }
+
+/* Thumbs */
+.pdp-thumbs {
+    display: flex;
+    gap: 10px;
+}
+
+.pdp-thumb {
+    width: 72px;
+    height: 72px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 4px;
+    background: #f5f5f5;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.pdp-thumb.active {
+    border-color: #000;
+}
+
+.pdp-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+    .pdp-layout {
+        flex-direction: column-reverse;
+        gap: 32px;
+    }
+
+    .pdp-info {
+        max-width: 100%;
+    }
+
+    .pdp-gallery {
+        position: static;
+    }
+}
