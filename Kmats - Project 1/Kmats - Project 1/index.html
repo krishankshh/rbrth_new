@@ -10,7 +10,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 
 <body>
@@ -23,9 +23,40 @@
     <div class="nav-logo"><img src="assets/logo.png" alt="RBRTH" /></div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <img src="assets/hero-bg.png" alt="RBRTH Hero" class="bg" />
+  <!-- HERO SLIDER -->
+  <section class="hero-slider">
+    <div class="slider-container">
+      <div class="slider-track">
+        <!-- Slide 1 -->
+        <div class="slide">
+          <video autoplay muted loop playsinline class="hero-video">
+            <source src="assets/hero-video-1.mp4" type="video/mp4">
+            <img src="assets/hero-bg.png" alt="RBRTH Hero 1" />
+          </video>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide">
+          <video autoplay muted loop playsinline class="hero-video">
+            <source src="assets/hero-video-2.mp4" type="video/mp4">
+            <img src="assets/hero-bg.png" alt="RBRTH Hero 2" />
+          </video>
+        </div>
+        <!-- Slide 3 -->
+        <div class="slide">
+          <video autoplay muted loop playsinline class="hero-video">
+            <source src="assets/hero-video-3.mp4" type="video/mp4">
+            <img src="assets/hero-bg.png" alt="RBRTH Hero 3" />
+          </video>
+        </div>
+      </div>
+      
+      <div class="slider-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+
     <div class="hero-ticker">
       <div class="ticker-track">
         <span>NO ADDED SUGAR</span><span class="sep">|</span>
@@ -47,6 +78,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- SHOP BY VIDEOS -->
   <section class="sbv r" id="videos">
@@ -384,7 +416,6 @@
     <img src="assets/potential.png" alt="POTENTIAL" />
   </section>
 
-  <script src="main.js"></script>
+  <script src="assets/main.js"></script>
 </body>
-
 </html>

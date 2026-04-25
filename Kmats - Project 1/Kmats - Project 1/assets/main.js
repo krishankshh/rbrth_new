@@ -51,3 +51,35 @@ if (hamburger) {
     document.body.appendChild(m);
   });
 }
+// Hero Slider Logic
+let currentSlide = 0;
+const sliderTrack = document.querySelector('.slider-track');
+const dots = document.querySelectorAll('.dot');
+const totalSlides = dots.length;
+
+function updateSlider(index) {
+  if (sliderTrack) {
+    sliderTrack.style.transform = `translateX(-${index * (100 / 3)}%)`;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+  }
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % totalSlides;
+  updateSlider(currentSlide);
+}
+
+if (totalSlides > 0) {
+  let sliderInterval = setInterval(nextSlide, 5000);
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      clearInterval(sliderInterval);
+      currentSlide = i;
+      updateSlider(currentSlide);
+      sliderInterval = setInterval(nextSlide, 5000);
+    });
+  });
+}

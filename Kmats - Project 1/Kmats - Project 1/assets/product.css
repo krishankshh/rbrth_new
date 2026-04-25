@@ -198,7 +198,7 @@ nav {
   height: 80px;
   margin: 20px 0;
   border: none;
-  background: url("assets/Icons update.jpeg") no-repeat center center;
+  background: url("./Icons update.jpeg") no-repeat center center;
   background-size: contain;
 }
 
@@ -429,7 +429,7 @@ nav {
 }
 
 .payment-row img {
-  content: url("assets/Payment box.jpeg");
+  content: url("./Payment box.jpeg");
   width: 100%;
   max-width: 100%;
   object-fit: contain;
