@@ -575,6 +575,16 @@ nav {
   transform: rotate(45deg);
 }
 
+.fco { color: #666; font-size: 13px; display: flex; align-items: center; gap: 8px; }
+.kmats-link { display: inline-flex; align-items: center; text-decoration: none; }
+.kmats-logo-glow {
+  height: 24px;
+  transition: opacity 0.3s ease;
+}
+.kmats-link:hover .kmats-logo-glow {
+  opacity: 0.7;
+}
+
 .fa {
   font-size: 13px;
   line-height: 1.7;
