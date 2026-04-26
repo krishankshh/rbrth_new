@@ -17,12 +17,76 @@ function tFaq(btn) {
   if (!isOpen) item.classList.add('open');
 }
 
-// Add to Cart
-let cartCount = 0;
-function addCart(btn) {
-  cartCount++;
+// Shared Cart Logic
+const CART_KEY = 'rbrth_cart';
+
+function getCart() {
+  const cart = localStorage.getItem(CART_KEY);
+  return cart ? JSON.parse(cart) : [];
+}
+
+function saveCart(cart) {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  updateCartUI();
+}
+
+function addToCart(productId, quantity = 1) {
+  const cart = getCart();
+  const existing = cart.find(item => item.id === productId);
+  if (existing) {
+    existing.qty += quantity;
+  } else {
+    cart.push({ id: productId, qty: quantity });
+  }
+  saveCart(cart);
+}
+
+function updateCartUI() {
+  const cart = getCart();
+  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
   const cartBtn = document.getElementById('cart-btn');
-  if (cartBtn) cartBtn.textContent = `Cart (${cartCount})`;
+  if (cartBtn) {
+    cartBtn.textContent = `Cart (${totalItems})`;
+  }
+}
+
+// Initial UI Update
+updateCartUI();
+
+// Parallax Effect
+window.addEventListener('scroll', () => {
+  const scrolled = window.pageYOffset;
+  const parallaxLayers = document.querySelectorAll('.parallax-layer');
+  
+  parallaxLayers.forEach(layer => {
+    const speed = layer.getAttribute('data-speed') || 0.2;
+    const yPos = scrolled * speed;
+    layer.style.transform = `translate3d(0, ${yPos}px, 0)`;
+  });
+});
+
+// Blog Rendering
+function renderBlogs() {
+  const grid = document.getElementById('blog-grid');
+  if (!grid || typeof BLOGS === 'undefined') return;
+
+  grid.innerHTML = BLOGS.map(blog => `
+    <div class="bc">
+      <a href="blog.html?id=${blog.id}" style="text-decoration:none; color:inherit;">
+        <div class="bc-img"><img src="${blog.image}" alt="${blog.title}" /></div>
+        <div class="bc-cat">${blog.category}</div>
+        <div class="bc-title">${blog.title}</div>
+        <div class="bc-exc">${blog.excerpt}</div>
+      </a>
+    </div>
+  `).join('');
+}
+
+window.addEventListener('DOMContentLoaded', renderBlogs);
+
+function addCart(btn, productId) {
+  addToCart(productId || 'generic-product');
+  
   const orig = btn.textContent;
   btn.textContent = 'ADDED ✓';
   btn.style.background = '#16a34a';
@@ -37,15 +101,33 @@ const hamburger = document.getElementById('hamburger');
 if (hamburger) {
   hamburger.addEventListener('click', () => {
     let m = document.getElementById('mob-menu');
-    if (m) { m.remove(); return; }
+    if (m) {
+      m.classList.toggle('active');
+      return;
+    }
     m = document.createElement('div');
     m.id = 'mob-menu';
-    m.style.cssText = 'position:fixed;top:98px;left:0;right:0;background:#000;border-bottom:1px solid #1a1a1a;z-index:998;padding:20px 28px;display:flex;flex-direction:column;gap:16px;';
-    ['Shop by Videos', 'Supermints', 'Science', 'FAQs', 'Blog'].forEach(t => {
+    m.classList.add('active');
+    // Basic styles moved to CSS would be better, but keeping inline for now as per original
+    m.style.cssText = 'position:fixed;top:62px;left:0;right:0;background:#000;border-bottom:1px solid #1a1a1a;z-index:998;padding:20px 28px;display:flex;flex-direction:column;gap:16px;transform:translateY(-100%);transition:transform 0.3s ease;';
+    
+    // Add logic to show menu
+    setTimeout(() => m.style.transform = 'translateY(0)', 10);
+
+    const links = [
+      { t: 'Shop by Videos', h: 'index.html#videos' },
+      { t: 'Supermints', h: 'index.html#supermints' },
+      { t: 'Science', h: 'index.html#science' },
+      { t: 'FAQs', h: 'index.html#faq' },
+      { t: 'Blog', h: 'index.html#blog' }
+    ];
+
+    links.forEach(link => {
       const a = document.createElement('a');
-      a.href = '#';
-      a.textContent = t;
+      a.href = link.h;
+      a.textContent = link.t;
       a.style.cssText = 'font-family:Barlow Condensed,sans-serif;font-size:15px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.7);text-decoration:none;';
+      a.onclick = () => m.style.transform = 'translateY(-100%)';
       m.appendChild(a);
     });
     document.body.appendChild(m);

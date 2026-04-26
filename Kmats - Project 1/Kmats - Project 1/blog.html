@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | RBRTH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,900;1,700;1,900&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .blog-detail { max-width: 900px; margin: 0 auto; padding: 100px 48px; }
+    .bd-cat { color: #e8190e; font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .bd-title { font-family: 'Barlow Condensed', sans-serif; font-size: 64px; font-weight: 900; line-height: 1; margin-bottom: 32px; text-transform: uppercase; }
+    .bd-meta { color: #666; font-size: 14px; margin-bottom: 48px; border-bottom: 1px solid #111; padding-bottom: 24px; }
+    .bd-img { width: 100%; height: 500px; object-fit: cover; margin-bottom: 64px; border: 1px solid #111; }
+    .bd-content { font-size: 20px; line-height: 1.8; color: rgba(255,255,255,0.8); }
+    .bd-content h3 { color: #fff; font-family: 'Barlow Condensed', sans-serif; font-size: 32px; margin: 48px 0 24px; text-transform: uppercase; }
+    .bd-content p { margin-bottom: 32px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-left"><a href="index.html#blog" class="nav-link">Back to Blog</a></div>
+    <div class="nav-logo"><a href="index.html"><img src="assets/logo.png" alt="RBRTH" /></a></div>
+    <div class="nav-right"><a href="cart.html" class="nav-cart" id="cart-btn">Cart (0)</a></div>
+  </nav>
+
+  <article class="blog-detail">
+    <div id="blog-post">
+      <div class="bd-cat" id="bd-cat">Category</div>
+      <h1 class="bd-title" id="bd-title">Blog Title</h1>
+      <div class="bd-meta" id="bd-meta">Posted on April 24, 2026</div>
+      <img src="" class="bd-img" id="bd-img" alt="">
+      <div class="bd-content" id="bd-content">
+        <!-- Content here -->
+      </div>
+    </div>
+  </article>
+
+  <script src="assets/blogs.js"></script>
+  <script src="assets/main.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      const blog = BLOGS.find(b => b.id === id);
+
+      if (blog) {
+        document.getElementById('bd-cat').textContent = blog.category;
+        document.getElementById('bd-title').textContent = blog.title;
+        document.getElementById('bd-meta').textContent = `Posted on ${blog.date}`;
+        document.getElementById('bd-img').src = blog.image;
+        document.getElementById('bd-content').innerHTML = blog.content;
+        document.title = `${blog.title} | RBRTH`;
+      } else {
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart | RBRTH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .cart-page { padding: 80px 48px; max-width: 1200px; margin: 0 auto; min-height: 60vh; }
+    .cart-header { font-family: 'Barlow Condensed', sans-serif; font-size: 48px; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; margin-bottom: 40px; border-bottom: 1px solid #222; padding-bottom: 20px; }
+    .cart-table { width: 100%; border-collapse: collapse; }
+    .cart-table th { text-align: left; font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; font-size: 14px; letter-spacing: 0.1em; color: #666; padding-bottom: 20px; border-bottom: 1px solid #222; }
+    .cart-item { border-bottom: 1px solid #111; padding: 24px 0; }
+    .cart-item td { padding: 24px 0; vertical-align: middle; }
+    .ci-info { display: flex; align-items: center; gap: 24px; }
+    .ci-img { width: 100px; height: 100px; background: #111; object-fit: contain; }
+    .ci-name { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; text-transform: uppercase; }
+    .ci-remove { font-size: 12px; color: #ff0000; cursor: pointer; margin-top: 8px; display: inline-block; text-transform: uppercase; font-weight: 700; }
+    .ci-qty { display: flex; align-items: center; border: 1px solid #333; width: fit-content; }
+    .ci-qty button { background: none; border: none; color: #fff; padding: 10px 15px; cursor: pointer; }
+    .ci-qty span { padding: 0 15px; font-weight: 600; }
+    .cart-summary { margin-top: 40px; display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
+    .cs-total { font-size: 24px; font-weight: 700; font-family: 'Barlow Condensed', sans-serif; }
+    .cs-btn { background: #fff; color: #000; border: none; padding: 18px 48px; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 16px; letter-spacing: 0.1em; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+    .cs-btn:hover { background: #e8190e; color: #fff; }
+    .empty-msg { text-align: center; padding: 100px 0; display: none; }
+    .empty-msg p { font-size: 18px; color: #666; margin-bottom: 24px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-left">
+      <a href="index.html#videos" class="nav-link">Shop by Videos</a>
+      <a href="index.html#supermints" class="nav-link">Supermints</a>
+    </div>
+    <div class="nav-logo"><a href="index.html"><img src="assets/logo.png" alt="RBRTH" /></a></div>
+    <div class="nav-right">
+      <a href="index.html#faq" class="nav-link">FAQs</a>
+      <a href="cart.html" class="nav-cart" id="cart-btn">Cart (0)</a>
+    </div>
+  </nav>
+
+  <div class="cart-page">
+    <h1 class="cart-header">Your Shopping Bag</h1>
+    
+    <div id="cart-content">
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="cart-items">
+          <!-- Dynamically populated -->
+        </tbody>
+      </table>
+
+      <div class="cart-summary">
+        <div class="cs-total" id="cart-total">Subtotal: ₹0.00</div>
+        <p style="color:#666; font-size:14px;">Taxes and shipping calculated at checkout</p>
+        <button class="cs-btn" onclick="location.href='checkout.html'">Check Out</button>
+      </div>
+    </div>
+
+    <div class="empty-msg" id="empty-msg">
+      <p>Your cart is currently empty.</p>
+      <button class="cs-btn" onclick="location.href='index.html'">Continue Shopping</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="fg">
+      <div><div class="fmark">///</div></div>
+      <div>
+        <p class="fch">Company</p>
+        <ul class="fl">
+          <li><a href="shipping.html">Shipping Policy</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="refund.html">Refund Policy</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/products.js"></script>
+  <script src="assets/main.js"></script>
+  <script>
+    function renderCartPage() {
+      const cart = getCart();
+      const itemsContainer = document.getElementById('cart-items');
+      const content = document.getElementById('cart-content');
+      const emptyMsg = document.getElementById('empty-msg');
+      
+      if (cart.length === 0) {
+        content.style.display = 'none';
+        emptyMsg.style.display = 'block';
+        return;
+      }
+
+      itemsContainer.innerHTML = '';
+      let total = 0;
+
+      cart.forEach(item => {
+        const product = PRODUCTS.find(p => p.id === item.id) || { name: 'Unknown Product', price: 0, mainImage: '' };
+        const itemTotal = product.price * item.qty;
+        total += itemTotal;
+
+        itemsContainer.innerHTML += `
+          <tr class="cart-item">
+            <td>
+              <div class="ci-info">
+                <img src="${product.mainImage}" class="ci-img" alt="">
+                <div>
+                  <div class="ci-name">${product.name}</div>
+                  <div class="ci-price">₹${product.price.toLocaleString()}</div>
+                  <span class="ci-remove" onclick="removeCartItem('${item.id}')">Remove</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="ci-qty">
+                <button onclick="updateQty('${item.id}', -1)">-</button>
+                <span>${item.qty}</span>
+                <button onclick="updateQty('${item.id}', 1)">+</button>
+              </div>
+            </td>
+            <td style="text-align:right; font-weight:700;">₹${itemTotal.toLocaleString()}</td>
+          </tr>
+        `;
+      });
+
+      document.getElementById('cart-total').textContent = `Subtotal: ₹${total.toLocaleString()}`;
+    }
+
+    function updateQty(id, delta) {
+      const cart = getCart();
+      const item = cart.find(i => i.id === id);
+      if (item) {
+        item.qty = Math.max(1, item.qty + delta);
+        saveCart(cart);
+        renderCartPage();
+      }
+    }
+
+    function removeCartItem(id) {
+      let cart = getCart();
+      cart = cart.filter(i => i.id !== id);
+      saveCart(cart);
+      renderCartPage();
+    }
+
+    window.addEventListener('DOMContentLoaded', renderCartPage);
+  </script>
+</body>
+</html>

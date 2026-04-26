@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | RBRTH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .checkout-page { display: grid; grid-template-columns: 1.5fr 1fr; min-height: 100vh; background: #fff; color: #000; }
+    .checkout-main { padding: 80px 10%; }
+    .checkout-side { background: #f9f9f9; padding: 80px 10%; border-left: 1px solid #eee; }
+    .checkout-logo { margin-bottom: 40px; }
+    .checkout-logo img { height: 30px; filter: invert(1); }
+    .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; text-transform: uppercase; margin-bottom: 24px; border-bottom: 1px solid #eee; padding-bottom: 12px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-input { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+    .pay-btn { width: 100%; background: #000; color: #fff; border: none; padding: 20px; font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 16px; letter-spacing: 0.1em; cursor: pointer; text-transform: uppercase; margin-top: 32px; transition: 0.3s; }
+    .pay-btn:hover { background: #e8190e; }
+    .summary-item { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+    .summary-img { width: 64px; height: 64px; background: #fff; border: 1px solid #eee; border-radius: 8px; object-fit: contain; }
+    .summary-name { flex: 1; font-size: 14px; font-weight: 600; }
+    .summary-price { font-weight: 700; }
+    .total-row { display: flex; justify-content: space-between; margin-top: 24px; font-size: 18px; font-weight: 700; border-top: 1px solid #ddd; padding-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="checkout-page">
+    <div class="checkout-main">
+      <div class="checkout-logo"><a href="index.html"><img src="assets/logo.png" alt="RBRTH"></a></div>
+      
+      <div class="section-title">Contact Information</div>
+      <input type="email" class="form-input" placeholder="Email Address" style="margin-bottom:32px;">
+
+      <div class="section-title">Shipping Address</div>
+      <div class="form-row">
+        <input type="text" class="form-input" placeholder="First Name">
+        <input type="text" class="form-input" placeholder="Last Name">
+      </div>
+      <input type="text" class="form-input" placeholder="Address" style="margin-bottom:16px;">
+      <div class="form-row">
+        <input type="text" class="form-input" placeholder="City">
+        <input type="text" class="form-input" placeholder="Pincode">
+      </div>
+      
+      <button class="pay-btn" onclick="alert('Order Placed Successfully!'); localStorage.removeItem('rbrth_cart'); window.location.href='index.html';">Complete Purchase</button>
+    </div>
+
+    <div class="checkout-side">
+      <div id="checkout-items">
+        <!-- Summary items here -->
+      </div>
+      
+      <div style="margin-top:40px;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:14px; color:#666;">
+          <span>Subtotal</span>
+          <span id="subtotal">₹0.00</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:14px; color:#666;">
+          <span>Shipping</span>
+          <span>Free</span>
+        </div>
+        <div class="total-row">
+          <span>Total</span>
+          <span id="total-price">₹0.00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/products.js"></script>
+  <script src="assets/main.js"></script>
+  <script>
+    function renderSummary() {
+      const cart = getCart();
+      const container = document.getElementById('checkout-items');
+      let total = 0;
+
+      cart.forEach(item => {
+        const product = PRODUCTS.find(p => p.id === item.id);
+        if (product) {
+          total += product.price * item.qty;
+          container.innerHTML += `
+            <div class="summary-item">
+              <img src="${product.mainImage}" class="summary-img" alt="">
+              <div class="summary-name">${product.name} (x${item.qty})</div>
+              <div class="summary-price">₹${(product.price * item.qty).toLocaleString()}</div>
+            </div>
+          `;
+        }
+      });
+
+      document.getElementById('subtotal').textContent = `₹${total.toLocaleString()}`;
+      document.getElementById('total-price').textContent = `₹${total.toLocaleString()}`;
+    }
+    renderSummary();
+  </script>
+</body>
+</html>

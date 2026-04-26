@@ -4,22 +4,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Creatine Monohydrate 112G – Orange Kick | RBRTH</title>
+  <title>RBRTH Spear Mints | RBRTH</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="assets/product.css">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/products.js"></script>
+  <script src="assets/main.js" defer></script>
 </head>
 
 <body>
 
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement">FREE DELIVERY ON PACK OF 5</div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-left">
+      <a href="index.html#videos" class="nav-link">Shop by Videos</a>
+      <a href="index.html#supermints" class="nav-link">Supermints</a>
+    </div>
+    <div class="nav-logo"><a href="index.html"><img src="assets/logo.png" alt="RBRTH" /></a></div>
+    <div class="nav-right">
+      <a href="index.html#faq" class="nav-link">FAQs</a>
+      <a href="#" class="nav-cart" id="cart-btn">Cart (0)</a>
+    </div>
+  </nav>
+
   <!-- BREADCRUMB -->
   <div class="breadcrumb">
     <a href="index.html">Home</a><span>/</span>
-    <a href="#">Supermints</a><span>/</span>
-    Creatine Monohydrate 112G – Orange Kick
+    <a href="#">Shop</a><span>/</span>
+    <span id="breadcrumb-current">Product</span>
   </div>
 
   <!-- PRODUCT SECTION -->
@@ -28,12 +47,12 @@
     <!-- LEFT: INFO -->
     <div class="product-info">
 
-      <h1 class="product-title">Creatine Monohydrate 112G – Orange Kick</h1>
+      <h1 class="product-title" id="p-title">Product Title</h1>
 
       <div class="price-row">
-        <span class="price">₹469</span>
-        <span class="price-orig">₹599</span>
-        <span class="price-off">-22% OFF</span>
+        <span class="price" id="p-price">₹0</span>
+        <span class="price-orig" id="p-price-orig">₹0</span>
+        <span class="price-off" id="p-price-off">-0% OFF</span>
       </div>
       <p class="price-tax">Incl. of all taxes &amp; shipping</p>
 
@@ -42,77 +61,21 @@
         <span class="stars-count">7 &nbsp;|&nbsp; 7 Reviews</span>
       </div>
 
-      <p class="product-desc">
-        Creatine is one of the most researched supplements in the world for strength
-        and performance. SuperYou Pro Creatine Monohydrate is micronised to 200
-        mesh for peak absorption and has +1Bn CFU probiotics for easy digestion.
-        Zero calories, zero sugar, zero artificial preservatives. Take one scoop, daily,
-        and you'll be able to show up stronger and sharper.
+      <p class="product-desc" id="p-desc">
+        Product description goes here.
       </p>
 
       <!-- ICONS ROW -->
-      <div class="icons-row">
-        <div class="icon-item">
-          <div class="icon-circle"><img src="assets/icon-atp.png" alt="ATP" /></div>
-          <span class="icon-label">Replenishes<br>ATP Energy</span>
-        </div>
-        <div class="icon-divider"></div>
-        <div class="icon-item">
-          <div class="icon-circle"><img src="assets/icon-strength.png" alt="Strength" /></div>
-          <span class="icon-label">Builds Strength<br>&amp; Endurance</span>
-        </div>
-        <div class="icon-divider"></div>
-        <div class="icon-item">
-          <div class="icon-circle"><img src="assets/icon-probiotic.png" alt="Probiotic" /></div>
-          <span class="icon-label">+1Bn CFU<br>Probiotics</span>
-        </div>
+      <div class="icons-row" id="p-icons">
+        <!-- Icons populated dynamically -->
       </div>
 
       <div class="section-divider"></div>
 
       <!-- VARIANTS -->
       <p class="variants-label">Choose Variant</p>
-      <div class="variants-grid">
-        <div class="vt active" onclick="selectVariant(this, 'assets/product-main.png')">
-          <img src="assets/var-orange.png" alt="Orange Kick" />
-          <div class="vt-name">Orange Kick</div>
-        </div>
-        <div class="vt" onclick="selectVariant(this, 'assets/product-main.png')">
-          <img src="assets/var-lemon.png" alt="Zesty Lemon" />
-          <div class="vt-name">Zesty Lemon</div>
-        </div>
-        <div class="vt" onclick="selectVariant(this, 'assets/product-main.png')">
-          <img src="assets/var-unflavoured.png" alt="Unflavoured" />
-          <div class="vt-name">Unflavoured</div>
-        </div>
-        <div class="vt" onclick="selectVariant(this, 'assets/var-pack2.png')">
-          <img src="assets/var-pack2.png" alt="Pack Of 2" />
-          <div class="vt-name">Pack Of 2</div>
-        </div>
-        <div class="vt" onclick="selectVariant(this, 'assets/var-pack1.png')">
-          <img src="assets/var-pack1.png" alt="Pack Of 3" />
-          <div class="vt-name">Pack Of 3</div>
-        </div>
-        <div class="vt" onclick="selectVariant(this, 'assets/var-coffee.png')">
-          <img src="assets/var-coffee.png" alt="Protein & Creatine - Coffee(500g)" />
-          <div class="vt-name">Protein &amp; Creatine - Coffee(500g)</div>
-        </div>
-        <div class="vt" onclick="selectVariant(this, 'assets/var-choc500.png')">
-          <img src="assets/var-choc500.png" alt="Protein & Creatine - Chocolate(500g)" />
-          <div class="vt-name">Protein &amp; Creatine - Chocolate(500g)</div>
-        </div>
-        <div class="vt" onclick="selectVariant(this, 'assets/var-van500.png')">
-          <img src="assets/var-van500.png" alt="Protein & Creatine - Vanilla(500g)" />
-          <div class="vt-name">Protein &amp; Creatine - Vanilla(500g)</div>
-        </div>
-        <div class="vt" onclick="selectVariant(this, 'assets/var-coffee500.png')">
-          <img src="assets/var-coffee500.png" alt="Protein & Creatine - Coffee(1kg)" />
-          <div class="vt-name">Protein &amp; Creatine - Coffee(1kg)</div>
-        </div>
-        <div class="vt" onclick="selectVariant(this, 'assets/pro-combo.png')">
-          <img src="assets/pro-combo.png" alt="Protein & Creatine - Chocolate(1kg)" />
-          <div class="vt-name">Protein &amp; Creatine - Chocolate(1kg)</div>
-        </div>
+      <div class="variants-grid" id="p-variants">
+        <!-- Variants populated dynamically -->
       </div>
 
       <div class="section-divider"></div>
@@ -155,16 +118,8 @@
       <div class="main-img-wrap">
         <img src="assets/product-main.png" alt="Creatine Monohydrate" id="main-img" />
       </div>
-      <div class="thumb-row">
-        <div class="thumb active" onclick="switchThumb(this, 'assets/product-main.png')">
-          <img src="assets/product-main.png" alt="Front" />
-        </div>
-        <div class="thumb" onclick="switchThumb(this, 'assets/product-back.png')">
-          <img src="assets/product-back.png" alt="Back" />
-        </div>
-        <div class="thumb" onclick="switchThumb(this, 'assets/pro-combo.png')">
-          <img src="assets/pro-combo.png" alt="Pro Combo" />
-        </div>
+      <div class="thumb-row" id="p-thumbs">
+        <!-- Thumbs populated dynamically -->
       </div>
     </div><!-- /product-images -->
 
@@ -347,14 +302,14 @@
       <div>
         <p class="fch">Company</p>
         <ul class="fl">
-          <li><a href="#">Shipping Policy</a></li>
-          <li><a href="#">Terms &amp; Conditions</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Refund Policy</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">FAQs</a></li>
+          <li><a href="shipping.html">Shipping Policy</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="refund.html">Refund Policy</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="index.html#blog">Blog</a></li>
+          <li><a href="index.html#faq">FAQs</a></li>
         </ul>
       </div>
       <div>

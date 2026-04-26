@@ -27,6 +27,24 @@ body {
 }
 
 /* ===========================
+   PARALLAX UTILITY
+   =========================== */
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120%; /* Extra height to allow movement */
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* ===========================
    ANNOUNCEMENT BAR
    =========================== */
 .announcement {
