@@ -1,0 +1,24 @@
+Phase 1: Core Shop Architecture (The Essentials)
+Collection Template (collection.html): Product grid with filtering and sorting.
+Collection List (list-collections.html): A "Shop All" page showing category thumbnails.
+Blog Article Detail (article.html): The actual page where users read a full blog post.
+Order Success Page (success.html): Branded "Thank You" page with order summary.
+Standardized Policy Styling: Clean UI for Shipping, Refund, and Privacy pages.
+Phase 2: User Experience & Conversion (The "Flow")
+AJAX Cart Drawer: A slide-out side menu to replace or supplement the cart page.
+Variant Selection Logic: Advanced UI for picking sizes/packs (including "Sold Out" states).
+Quick Add / Quick View: Ability to add products to the cart directly from the home or collection grid.
+Sticky Mobile Footer: A floating "Add to Cart" bar that appears on product pages.
+Form Validation: Error/success handling for checkout, newsletter, and contact forms.
+Phase 3: Accounts & Advanced Search (The Ecosystem)
+Login & Registration UI: Styled pages for user authentication.
+Account Dashboard: Pages for Order History, Profile, and Saved Addresses.
+Search Results Template (search.html): Grid view for search results with "No Results" states.
+Predictive Search: A dropdown that suggests products as the user types in the header.
+Wishlist UI: A way for users to save products for later.
+Phase 4: Optimization & Shopify Preparation (The Polish)
+Global Design System: Consolidating all colors, fonts, and spacing into CSS Variables.
+Modular Section Refactoring: Ensuring every homepage section is a self-contained unit.
+Skeleton Loading States: Visual placeholders for images and text during loading.
+Custom 404 & Password Pages: Branded error and "Coming Soon" pages.
+Accessibility & SEO Polish: Proper Aria-labels, alt text, and semantic HTML for Google ranking.

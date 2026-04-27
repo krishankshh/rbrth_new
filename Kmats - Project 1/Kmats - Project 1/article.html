@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Article | RBRTH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .article-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+    .article-meta {
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      font-size: 14px;
+      color: var(--red);
+      margin-bottom: 16px;
+      display: block;
+      text-align: center;
+    }
+    .article-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 56px;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+      text-align: center;
+      margin-bottom: 40px;
+      letter-spacing: -0.01em;
+    }
+    .article-hero {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 60px;
+    }
+    .article-content {
+      font-size: 18px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.8);
+    }
+    .article-content h2, .article-content h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      color: #fff;
+      text-transform: uppercase;
+      margin: 40px 0 20px;
+    }
+    .article-content p {
+      margin-bottom: 24px;
+    }
+    .back-to-blog {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin-bottom: 40px;
+      opacity: 0.5;
+      transition: opacity 0.3s;
+    }
+    .back-to-blog:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement">FREE DELIVERY ON PACK OF 5</div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-left">
+      <a href="index.html#videos" class="nav-link">Shop by Videos</a>
+      <a href="collection.html" class="nav-link">Shop All</a>
+    </div>
+    <div class="nav-logo"><a href="index.html"><img src="assets/logo.png" alt="RBRTH" /></a></div>
+    <div class="nav-right">
+      <a href="index.html#faq" class="nav-link">FAQs</a>
+      <a href="cart.html" class="nav-cart" id="cart-btn">Cart (0)</a>
+    </div>
+  </nav>
+
+  <div class="article-wrap">
+    <a href="index.html#blog" class="back-to-blog">← Back to Blog</a>
+    
+    <div id="article-container">
+      <!-- Dynamically populated -->
+    </div>
+  </div>
+
+  <footer>
+    <div class="fg">
+      <div><div class="fmark">///</div></div>
+      <div>
+        <p class="fch">Company</p>
+        <ul class="fl">
+          <li><a href="shipping.html">Shipping Policy</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="refund.html">Refund Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/blogs.js"></script>
+  <script src="assets/main.js"></script>
+  <script>
+    function renderArticle() {
+      const container = document.getElementById('article-container');
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      
+      if (!container || !id || typeof BLOGS === 'undefined') return;
+
+      const article = BLOGS.find(b => b.id === id);
+      if (!article) {
+        container.innerHTML = '<h1>Article not found.</h1>';
+        return;
+      }
+
+      document.title = `${article.title} | RBRTH`;
+
+      container.innerHTML = `
+        <span class="article-meta">${article.category} — ${article.date}</span>
+        <h1 class="article-title">${article.title}</h1>
+        <img src="${article.image}" class="article-hero" alt="">
+        <div class="article-content">
+          ${article.content}
+        </div>
+      `;
+    }
+
+    window.addEventListener('DOMContentLoaded', renderArticle);
+  </script>
+</body>
+</html>

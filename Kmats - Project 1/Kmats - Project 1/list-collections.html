@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collections | RBRTH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .collection-card {
+      position: relative;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .collection-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .collection-card:hover img {
+      transform: scale(1.05);
+    }
+    .collection-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 32px;
+    }
+    .collection-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .collection-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement">FREE DELIVERY ON PACK OF 5</div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-left">
+      <a href="index.html#videos" class="nav-link">Shop by Videos</a>
+      <a href="collection.html" class="nav-link">Shop All</a>
+    </div>
+    <div class="nav-logo"><a href="index.html"><img src="assets/logo.png" alt="RBRTH" /></a></div>
+    <div class="nav-right">
+      <a href="index.html#faq" class="nav-link">FAQs</a>
+      <a href="cart.html" class="nav-cart" id="cart-btn">Cart (0)</a>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <header class="page-header">
+      <h1 class="page-title">Collections</h1>
+      <p class="page-subtitle">Browse by category</p>
+    </header>
+
+    <div class="grid-layout">
+      <!-- Collection 1 -->
+      <div class="collection-card" onclick="location.href='collection.html'">
+        <img src="assets/hero-bg.png" alt="Supermints" />
+        <div class="collection-overlay">
+          <div class="collection-name">Supermints</div>
+          <a href="collection.html" class="collection-link">Explore Collection →</a>
+        </div>
+      </div>
+
+      <!-- Collection 2 (Placeholder) -->
+      <div class="collection-card" onclick="location.href='collection.html'">
+        <img src="assets/science-bg.png" alt="Bundles" />
+        <div class="collection-overlay">
+          <div class="collection-name">Performance Bundles</div>
+          <a href="collection.html" class="collection-link">Explore Collection →</a>
+        </div>
+      </div>
+
+      <!-- Collection 3 (Placeholder) -->
+      <div class="collection-card" onclick="location.href='collection.html'">
+        <img src="assets/potential.png" alt="Merch" />
+        <div class="collection-overlay">
+          <div class="collection-name">Gear & Merch</div>
+          <a href="collection.html" class="collection-link">Explore Collection →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="fg">
+      <div><div class="fmark">///</div></div>
+      <div>
+        <p class="fch">Company</p>
+        <ul class="fl">
+          <li><a href="shipping.html">Shipping Policy</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="refund.html">Refund Policy</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>
