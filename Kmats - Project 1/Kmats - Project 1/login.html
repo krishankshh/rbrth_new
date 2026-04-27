@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | RBRTH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-left">
+      <a href="index.html#videos" class="nav-link">Shop by Videos</a>
+      <a href="collection.html" class="nav-link">Shop All</a>
+    </div>
+    <div class="nav-logo"><a href="index.html"><img src="assets/logo.png" alt="RBRTH" /></a></div>
+    <div class="nav-right">
+      <a href="index.html#faq" class="nav-link">FAQs</a>
+      <a href="cart.html" class="nav-cart" id="cart-btn">Cart (0)</a>
+    </div>
+  </nav>
+
+  <div class="auth-container">
+    <div class="auth-header">
+      <h1 class="auth-title">Login</h1>
+      <p class="auth-subtitle">Welcome back to the elite</p>
+    </div>
+    
+    <form class="auth-form" onsubmit="event.preventDefault(); location.href='account.html'">
+      <input type="email" class="auth-input" placeholder="Email" required>
+      <input type="password" class="auth-input" placeholder="Password" required>
+      <button type="submit" class="pc-btn" style="width:100%; padding: 18px;">Login</button>
+    </form>
+
+    <div class="auth-links">
+      <a href="register.html" class="auth-link">Create Account</a>
+      <a href="#" class="auth-link">Forgot Password?</a>
+    </div>
+  </div>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Account | RBRTH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .account-layout {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 60px;
+      padding-top: 60px;
+    }
+    .account-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .account-nav-link {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      transition: color 0.3s;
+    }
+    .account-nav-link.active, .account-nav-link:hover {
+      color: #fff;
+    }
+    .order-card {
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      padding: 24px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .order-info h4 { margin-bottom: 4px; }
+    .order-info p { font-size: 13px; color: rgba(255,255,255,0.4); }
+    .order-status {
+      padding: 6px 12px;
+      background: #1a1a1a;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    @media(max-width: 768px) {
+      .account-layout { grid-template-columns: 1fr; gap: 40px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-left">
+      <a href="index.html#videos" class="nav-link">Shop by Videos</a>
+      <a href="collection.html" class="nav-link">Shop All</a>
+    </div>
+    <div class="nav-logo"><a href="index.html"><img src="assets/logo.png" alt="RBRTH" /></a></div>
+    <div class="nav-right">
+      <a href="index.html#faq" class="nav-link">FAQs</a>
+      <a href="cart.html" class="nav-cart" id="cart-btn">Cart (0)</a>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <header class="page-header">
+      <h1 class="page-title">My Account</h1>
+      <p class="page-subtitle">Welcome back, Elite Member</p>
+    </header>
+
+    <div class="account-layout">
+      <div class="account-nav">
+        <a href="#" class="account-nav-link active">Order History</a>
+        <a href="#" class="account-nav-link">Addresses</a>
+        <a href="#" class="account-nav-link">Wishlist</a>
+        <a href="login.html" class="account-nav-link" style="margin-top:20px; color:var(--red);">Logout</a>
+      </div>
+
+      <div class="account-content">
+        <h2 style="font-family:'Barlow Condensed'; font-size:20px; margin-bottom:30px;">Recent Orders</h2>
+        
+        <div class="order-card">
+          <div class="order-info">
+            <h4>Order #10294</h4>
+            <p>Placed on April 24, 2024 • ₹1,299</p>
+          </div>
+          <div class="order-status">Processing</div>
+        </div>
+
+        <div class="order-card">
+          <div class="order-info">
+            <h4>Order #10182</h4>
+            <p>Placed on March 15, 2024 • ₹499</p>
+          </div>
+          <div class="order-status" style="color:#16a34a;">Delivered</div>
+        </div>
+        
+        <p style="color:rgba(255,255,255,0.2); font-size:12px; margin-top:40px;">No more orders to show.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

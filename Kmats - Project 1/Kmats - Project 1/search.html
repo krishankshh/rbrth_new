@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Results | RBRTH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-left">
+      <a href="index.html#videos" class="nav-link">Shop by Videos</a>
+      <a href="collection.html" class="nav-link">Shop All</a>
+    </div>
+    <div class="nav-logo"><a href="index.html"><img src="assets/logo.png" alt="RBRTH" /></a></div>
+    <div class="nav-right">
+      <a href="index.html#faq" class="nav-link">FAQs</a>
+      <a href="cart.html" class="nav-cart" id="cart-btn">Cart (0)</a>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <header class="page-header">
+      <h1 class="page-title" id="search-title">Search Results</h1>
+      <p class="page-subtitle" id="search-subtitle">Showing results for your query</p>
+    </header>
+
+    <div class="grid-layout" id="search-grid">
+      <!-- Populated via script -->
+    </div>
+
+    <div id="no-results" style="display:none; text-align:center; padding: 100px 0;">
+      <h2 style="font-family:'Barlow Condensed'; font-size:32px; margin-bottom:20px;">No matches found</h2>
+      <p style="color:rgba(255,255,255,0.4); margin-bottom:40px;">Try searching for "Spear" or "Mints"</p>
+      <a href="collection.html" class="pc-btn" style="padding: 15px 40px;">Browse All</a>
+    </div>
+  </div>
+
+  <script src="assets/products.js"></script>
+  <script src="assets/main.js"></script>
+  <script>
+    function performSearch() {
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get('q');
+      const grid = document.getElementById('search-grid');
+      const noResults = document.getElementById('no-results');
+      const title = document.getElementById('search-title');
+      
+      if (!query) return;
+
+      title.textContent = `Search: "${query}"`;
+
+      const matches = PRODUCTS.filter(p => 
+        p.name.toLowerCase().includes(query.toLowerCase()) || 
+        p.description.toLowerCase().includes(query.toLowerCase())
+      );
+
+      if (matches.length === 0) {
+        grid.style.display = 'none';
+        noResults.style.display = 'block';
+        return;
+      }
+
+      grid.innerHTML = matches.map(product => `
+        <div class="pc r v">
+          <div class="pc-img">
+            <a href="product.html?id=${product.id}"><img src="${product.mainImage}" alt="${product.name}" /></a>
+            <button class="quick-add-btn" onclick="addCart(this, '${product.id}')">Quick Add +</button>
+          </div>
+          <div class="pc-body">
+            <div class="pc-stars"><span>★★★★★</span> | 24 Reviews</div>
+            <a href="product.html?id=${product.id}" style="text-decoration:none; color:inherit;">
+              <div class="pc-name">${product.name}</div>
+            </a>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+                <span style="font-weight:700; font-size:16px;">₹${product.price}</span>
+                <span style="color:rgba(255,255,255,0.4); text-decoration:line-through; font-size:12px;">₹${product.originalPrice}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.addEventListener('DOMContentLoaded', performSearch);
+  </script>
+</body>
+</html>

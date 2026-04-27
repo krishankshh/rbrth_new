@@ -87,10 +87,67 @@ window.addEventListener('DOMContentLoaded', () => {
   renderBlogs();
   initComparison();
   injectCartDrawer();
+  injectSearchOverlay();
+  injectBackToTop();
+  updateNavIcons();
+  initNewsletter();
   if (window.location.pathname.includes('product.html')) {
     setTimeout(initStickyBar, 500);
   }
 });
+
+function injectBackToTop() {
+    if (document.getElementById('back-to-top')) return;
+    const btn = `<div id="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</div>`;
+    document.body.insertAdjacentHTML('beforeend', btn);
+    
+    window.addEventListener('scroll', () => {
+        const btt = document.getElementById('back-to-top');
+        if (window.scrollY > 500) btt.classList.add('active');
+        else btt.classList.remove('active');
+    });
+}
+
+function initNewsletter() {
+    const subBtn = document.querySelector('.fsub-row button');
+    const subInput = document.querySelector('.fsub-row input');
+    if (!subBtn) return;
+    
+    subBtn.addEventListener('click', () => {
+        if (!subInput.value.includes('@')) {
+            alert('Please enter a valid email.');
+            return;
+        }
+        const origText = subBtn.textContent;
+        subBtn.textContent = 'DONE ✓';
+        subBtn.style.background = '#16a34a';
+        subInput.value = '';
+        setTimeout(() => {
+            subBtn.textContent = origText;
+            subBtn.style.background = '';
+        }, 3000);
+    });
+}
+
+function updateNavIcons() {
+    const navRight = document.querySelector('.nav-right');
+    if (!navRight) return;
+    
+    // Add Search and Account icons if they don't exist
+    if (!document.getElementById('search-toggle')) {
+        const searchBtn = `
+            <a href="#" class="nav-link" id="search-toggle" onclick="event.preventDefault(); openSearch();">
+                <img src="https://api.iconify.design/lucide:search.svg?color=white" style="width:20px; vertical-align:middle;" alt="Search">
+            </a>
+        `;
+        const accountBtn = `
+            <a href="login.html" class="nav-link" id="account-link">
+                <img src="https://api.iconify.design/lucide:user.svg?color=white" style="width:20px; vertical-align:middle;" alt="Account">
+            </a>
+        `;
+        navRight.insertAdjacentHTML('afterbegin', searchBtn + accountBtn);
+    }
+}
 
 // GSAP Comparison Animation
 function initComparison() {
@@ -335,4 +392,94 @@ function initStickyBar() {
             bar.classList.remove('active');
         }
     });
+}
+
+// Predictive Search Logic
+function injectSearchOverlay() {
+  if (document.getElementById('search-overlay-container')) return;
+
+  const searchHTML = `
+    <div id="search-overlay-container" class="search-overlay">
+      <div class="search-overlay-close" onclick="closeSearch()">✕</div>
+      <div class="search-inner">
+        <input type="text" id="search-input" class="search-field" placeholder="Search RBRTH..." oninput="handleSearch(this.value)">
+        <div id="search-results" class="search-suggestions"></div>
+      </div>
+    </div>
+  `;
+  document.body.insertAdjacentHTML('beforeend', searchHTML);
+}
+
+function openSearch() {
+  const overlay = document.getElementById('search-overlay-container');
+  overlay.classList.add('active');
+  document.getElementById('search-input').focus();
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSearch() {
+  document.getElementById('search-overlay-container').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function handleSearch(query) {
+  const resultsBox = document.getElementById('search-results');
+  if (!query || query.length < 2) {
+    resultsBox.innerHTML = '';
+    return;
+  }
+
+  const matches = PRODUCTS.filter(p => 
+    p.name.toLowerCase().includes(query.toLowerCase()) || 
+    p.description.toLowerCase().includes(query.toLowerCase())
+  ).slice(0, 5);
+
+  if (matches.length === 0) {
+    resultsBox.innerHTML = '<p style="padding:20px; color:rgba(255,255,255,0.3);">No matches found.</p>';
+    return;
+  }
+
+  resultsBox.innerHTML = matches.map(p => `
+    <a href="product.html?id=${p.id}" class="suggestion-item">
+      <img src="${p.mainImage}" alt="">
+      <div>
+        <div class="suggestion-name">${p.name}</div>
+        <div class="suggestion-price">₹${p.price}</div>
+      </div>
+    </a>
+  `).join('') + `<a href="search.html?q=${query}" class="suggestion-footer">View all results</a>`;
+}
+
+// Wishlist Logic
+function getWishlist() {
+    return JSON.parse(localStorage.getItem('rbrth_wishlist') || '[]');
+}
+
+function saveWishlist(list) {
+    localStorage.setItem('rbrth_wishlist', JSON.stringify(list));
+    updateWishlistCount();
+}
+
+function toggleWishlist(id) {
+    let list = getWishlist();
+    const index = list.indexOf(id);
+    if (index > -1) {
+        list.splice(index, 1);
+    } else {
+        list.push(id);
+    }
+    saveWishlist(list);
+    
+    // UI Feedback
+    const btn = document.getElementById(`wish-${id}`);
+    if (btn) {
+        const img = btn.querySelector('img');
+        img.src = list.includes(id) 
+            ? 'https://api.iconify.design/lucide:heart.svg?color=red' 
+            : 'https://api.iconify.design/lucide:heart.svg?color=white';
+    }
+}
+
+function updateWishlistCount() {
+    // Optional: add a count in header
 }

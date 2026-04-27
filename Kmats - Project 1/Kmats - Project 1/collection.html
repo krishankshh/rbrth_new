@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/skeleton.css">
   <style>
     .collection-controls {
       display: flex;
@@ -165,26 +166,41 @@
       
       if (!grid || typeof PRODUCTS === 'undefined') return;
 
-      grid.innerHTML = PRODUCTS.map(product => `
-        <div class="pc r v">
-          <div class="pc-img">
-            <a href="product.html?id=${product.id}"><img src="${product.mainImage}" alt="${product.name}" /></a>
-            <button class="quick-add-btn" onclick="addCart(this, '${product.id}')">Quick Add +</button>
-          </div>
-          <div class="pc-body">
-            <div class="pc-stars"><span>★★★★★</span> | 24 Reviews</div>
-            <a href="product.html?id=${product.id}" style="text-decoration:none; color:inherit;">
-              <div class="pc-name">${product.name}</div>
-            </a>
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
-                <span style="font-weight:700; font-size:16px;">₹${product.price}</span>
-                <span style="color:rgba(255,255,255,0.4); text-decoration:line-through; font-size:12px;">₹${product.originalPrice}</span>
-            </div>
-          </div>
+      // Show skeletons
+      grid.innerHTML = Array(4).fill(0).map(() => `
+        <div class="pc">
+          <div class="skeleton skeleton-img"></div>
+          <div class="skeleton skeleton-text"></div>
+          <div class="skeleton skeleton-text" style="width:50%"></div>
+          <div class="skeleton skeleton-btn"></div>
         </div>
       `).join('');
 
-      countEl.textContent = `${PRODUCTS.length} Products`;
+      // Simulate network delay
+      setTimeout(() => {
+        grid.innerHTML = PRODUCTS.map(product => `
+          <div class="pc r v">
+            <div class="pc-img">
+              <a href="product.html?id=${product.id}"><img src="${product.mainImage}" alt="${product.name}" /></a>
+              <button class="quick-add-btn" onclick="addCart(this, '${product.id}')">Quick Add +</button>
+              <button class="wishlist-btn" onclick="toggleWishlist('${product.id}')" id="wish-${product.id}">
+                  <img src="https://api.iconify.design/lucide:heart.svg?color=white" style="width:16px;" alt="">
+              </button>
+            </div>
+            <div class="pc-body">
+              <div class="pc-stars"><span>★★★★★</span> | 24 Reviews</div>
+              <a href="product.html?id=${product.id}" style="text-decoration:none; color:inherit;">
+                <div class="pc-name">${product.name}</div>
+              </a>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+                  <span style="font-weight:700; font-size:16px;">₹${product.price}</span>
+                  <span style="color:rgba(255,255,255,0.4); text-decoration:line-through; font-size:12px;">₹${product.originalPrice}</span>
+              </div>
+            </div>
+          </div>
+        `).join('');
+        countEl.textContent = `${PRODUCTS.length} Products`;
+      }, 1000);
     }
 
     window.addEventListener('DOMContentLoaded', renderCollection);
