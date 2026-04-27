@@ -136,13 +136,13 @@ function updateNavIcons() {
     // Add Search and Account icons if they don't exist
     if (!document.getElementById('search-toggle')) {
         const searchBtn = `
-            <a href="#" class="nav-link" id="search-toggle" onclick="event.preventDefault(); openSearch();">
-                <img src="https://api.iconify.design/lucide:search.svg?color=white" style="width:20px; vertical-align:middle;" alt="Search">
+            <a href="#" class="nav-link" id="search-toggle" aria-label="Search" onclick="event.preventDefault(); openSearch();">
+                <img src="https://api.iconify.design/lucide:search.svg?color=white" style="width:20px; vertical-align:middle;" alt="">
             </a>
         `;
         const accountBtn = `
-            <a href="login.html" class="nav-link" id="account-link">
-                <img src="https://api.iconify.design/lucide:user.svg?color=white" style="width:20px; vertical-align:middle;" alt="Account">
+            <a href="login.html" class="nav-link" id="account-link" aria-label="My Account">
+                <img src="https://api.iconify.design/lucide:user.svg?color=white" style="width:20px; vertical-align:middle;" alt="">
             </a>
         `;
         navRight.insertAdjacentHTML('afterbegin', searchBtn + accountBtn);

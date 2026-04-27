@@ -10,9 +10,24 @@
 }
 
 :root {
-  --black: #000;
-  --white: #fff;
-  --red: #e8190e;
+  --primary: #e8190e;
+  --bg: #000000;
+  --bg-offset: #0a0a0a;
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.4);
+  --border: #1a1a1a;
+  
+  --font-main: 'Barlow', sans-serif;
+  --font-cond: 'Barlow Condensed', sans-serif;
+  
+  --gutter: 24px;
+  --radius: 4px;
+  --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* Legacy compatibility */
+  --black: var(--bg);
+  --white: var(--text);
+  --red: var(--primary);
 }
 
 html {
