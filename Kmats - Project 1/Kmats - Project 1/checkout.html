@@ -32,20 +32,20 @@
       <div class="checkout-logo"><a href="index.html"><img src="assets/logo.png" alt="RBRTH"></a></div>
       
       <div class="section-title">Contact Information</div>
-      <input type="email" class="form-input" placeholder="Email Address" style="margin-bottom:32px;">
+      <input type="email" id="email" class="form-input" placeholder="Email Address" style="margin-bottom:32px;">
 
       <div class="section-title">Shipping Address</div>
       <div class="form-row">
-        <input type="text" class="form-input" placeholder="First Name">
-        <input type="text" class="form-input" placeholder="Last Name">
+        <input type="text" id="fname" class="form-input" placeholder="First Name">
+        <input type="text" id="lname" class="form-input" placeholder="Last Name">
       </div>
-      <input type="text" class="form-input" placeholder="Address" style="margin-bottom:16px;">
+      <input type="text" id="address" class="form-input" placeholder="Address" style="margin-bottom:16px;">
       <div class="form-row">
-        <input type="text" class="form-input" placeholder="City">
-        <input type="text" class="form-input" placeholder="Pincode">
+        <input type="text" id="city" class="form-input" placeholder="City">
+        <input type="text" id="pincode" class="form-input" placeholder="Pincode">
       </div>
       
-      <button class="pay-btn" onclick="localStorage.removeItem('rbrth_cart'); window.location.href='success.html';">Complete Purchase</button>
+      <button class="pay-btn" onclick="validateAndComplete()">Complete Purchase</button>
     </div>
 
     <div class="checkout-side">
@@ -95,6 +95,34 @@
       document.getElementById('subtotal').textContent = `₹${total.toLocaleString()}`;
       document.getElementById('total-price').textContent = `₹${total.toLocaleString()}`;
     }
+    function validateAndComplete() {
+      const inputs = ['email', 'fname', 'lname', 'address', 'city', 'pincode'];
+      let isValid = true;
+
+      inputs.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) {
+          el.style.borderColor = '#e8190e';
+          isValid = false;
+        } else {
+          el.style.borderColor = '#ddd';
+        }
+      });
+
+      if (!isValid) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      if (getCart().length === 0) {
+        alert('Your cart is empty.');
+        return;
+      }
+
+      localStorage.removeItem('rbrth_cart');
+      window.location.href = 'success.html';
+    }
+
     renderSummary();
   </script>
 </body>

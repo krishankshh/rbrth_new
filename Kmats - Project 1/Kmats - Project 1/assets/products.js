@@ -12,9 +12,9 @@ const PRODUCTS = [
       "assets/pro-combo.png"
     ],
     variants: [
-      { name: "Single Pack", image: "assets/spear-mints.png" },
-      { name: "Pack of 3", image: "assets/spear-mints.png" },
-      { name: "Pack of 5", image: "assets/spear-mints.png" }
+      { name: "Single Pack", image: "assets/spear-mints.png", price: 499 },
+      { name: "Pack of 3", image: "assets/spear-mints.png", price: 1299 },
+      { name: "Pack of 5", image: "assets/spear-mints.png", price: 1999, soldOut: true }
     ],
     icons: [
       { label: "Instant Mental Reset", icon: "assets/icon-atp.png" },

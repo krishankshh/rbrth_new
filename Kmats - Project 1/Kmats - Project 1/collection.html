@@ -42,6 +42,37 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
+    .pc-img {
+      position: relative;
+    }
+    .quick-add-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+    .pc:hover .quick-add-btn {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .quick-add-btn:hover {
+      background: var(--red);
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -136,9 +167,10 @@
 
       grid.innerHTML = PRODUCTS.map(product => `
         <div class="pc r v">
-          <a href="product.html?id=${product.id}" style="text-decoration:none; color:inherit;">
-            <div class="pc-img"><img src="${product.mainImage}" alt="${product.name}" /></div>
-          </a>
+          <div class="pc-img">
+            <a href="product.html?id=${product.id}"><img src="${product.mainImage}" alt="${product.name}" /></a>
+            <button class="quick-add-btn" onclick="addCart(this, '${product.id}')">Quick Add +</button>
+          </div>
           <div class="pc-body">
             <div class="pc-stars"><span>★★★★★</span> | 24 Reviews</div>
             <a href="product.html?id=${product.id}" style="text-decoration:none; color:inherit;">
@@ -148,7 +180,6 @@
                 <span style="font-weight:700; font-size:16px;">₹${product.price}</span>
                 <span style="color:rgba(255,255,255,0.4); text-decoration:line-through; font-size:12px;">₹${product.originalPrice}</span>
             </div>
-            <button class="pc-btn" style="margin-top:15px;" onclick="addCart(this, '${product.id}')">ADD TO CART</button>
           </div>
         </div>
       `).join('');

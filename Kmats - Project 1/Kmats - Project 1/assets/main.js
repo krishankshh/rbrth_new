@@ -34,11 +34,12 @@ function addToCart(productId, quantity = 1) {
   const cart = getCart();
   const existing = cart.find(item => item.id === productId);
   if (existing) {
-    existing.qty += quantity;
+    existing.qty += parseInt(quantity);
   } else {
-    cart.push({ id: productId, qty: quantity });
+    cart.push({ id: productId, qty: parseInt(quantity) });
   }
   saveCart(cart);
+  openCart(); // Auto-open drawer
 }
 
 function updateCartUI() {
@@ -85,6 +86,10 @@ function renderBlogs() {
 window.addEventListener('DOMContentLoaded', () => {
   renderBlogs();
   initComparison();
+  injectCartDrawer();
+  if (window.location.pathname.includes('product.html')) {
+    setTimeout(initStickyBar, 500);
+  }
 });
 
 // GSAP Comparison Animation
@@ -202,4 +207,132 @@ if (totalSlides > 0) {
       sliderInterval = setInterval(nextSlide, 5000);
     });
   });
+}
+
+// AJAX Cart Drawer Injection
+function injectCartDrawer() {
+  if (document.getElementById('cart-drawer-container')) return;
+
+  const drawerHTML = `
+    <div id="cart-drawer-container">
+      <div class="cart-drawer-overlay" id="drawer-overlay" onclick="closeCart()"></div>
+      <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-drawer-header">
+          <h2>Your Bag</h2>
+          <button class="cart-drawer-close" onclick="closeCart()">✕</button>
+        </div>
+        <div class="cart-drawer-items" id="drawer-items">
+          <!-- Items will be injected here -->
+        </div>
+        <div class="cart-drawer-footer">
+          <div class="drawer-subtotal">
+            <span>Subtotal</span>
+            <span id="drawer-total">₹0</span>
+          </div>
+          <button class="pc-btn" style="width:100%; padding: 20px;" onclick="location.href='checkout.html'">Checkout</button>
+          <a href="cart.html" style="display:block; text-align:center; margin-top:16px; font-size:12px; color:rgba(255,255,255,0.4); text-transform:uppercase; font-weight:700; letter-spacing:0.1em; text-decoration:none;">View full cart</a>
+        </div>
+      </div>
+    </div>
+  `;
+  document.body.insertAdjacentHTML('beforeend', drawerHTML);
+}
+
+function openCart() {
+  injectCartDrawer();
+  renderDrawerItems();
+  document.getElementById('drawer-overlay').classList.add('active');
+  document.getElementById('cart-drawer').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+  document.getElementById('drawer-overlay').classList.remove('active');
+  document.getElementById('cart-drawer').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function renderDrawerItems() {
+  const itemsContainer = document.getElementById('drawer-items');
+  const totalEl = document.getElementById('drawer-total');
+  const cart = getCart();
+
+  if (!itemsContainer) return;
+
+  if (cart.length === 0) {
+    itemsContainer.innerHTML = '<p style="text-align:center; padding-top:40px; color:rgba(255,255,255,0.3);">Your bag is empty.</p>';
+    totalEl.textContent = '₹0';
+    return;
+  }
+
+  let total = 0;
+  itemsContainer.innerHTML = cart.map(item => {
+    const product = PRODUCTS.find(p => p.id === item.id) || { name: 'Unknown', price: 0, mainImage: '' };
+    total += product.price * item.qty;
+    return `
+      <div class="drawer-item">
+        <img src="${product.mainImage}" class="drawer-item-img" alt="">
+        <div class="drawer-item-info">
+          <div class="drawer-item-name">${product.name}</div>
+          <div class="drawer-item-price">₹${product.price.toLocaleString()}</div>
+          <div class="drawer-item-qty">
+            <button onclick="updateDrawerQty('${item.id}', -1)">-</button>
+            <span>${item.qty}</span>
+            <button onclick="updateDrawerQty('${item.id}', 1)">+</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  totalEl.textContent = `₹${total.toLocaleString()}`;
+}
+
+function updateDrawerQty(id, delta) {
+  const cart = getCart();
+  const item = cart.find(i => i.id === id);
+  if (item) {
+    item.qty = Math.max(1, item.qty + delta);
+    saveCart(cart);
+    renderDrawerItems();
+  }
+}
+
+// Hook into existing cart buttons
+document.addEventListener('click', e => {
+    const cartToggle = e.target.closest('#cart-btn');
+    if (cartToggle) {
+        e.preventDefault();
+        openCart();
+    }
+});
+
+// Sticky Mobile Bar Logic
+function initStickyBar() {
+    const productInfo = document.querySelector('.product-info');
+    if (!productInfo) return;
+
+    const stickyBarHTML = `
+        <div class="sticky-cart-bar" id="sticky-bar">
+            <div class="sticky-info">
+                <div class="sticky-title">${document.getElementById('p-title')?.textContent || 'RBRTH Product'}</div>
+                <div class="sticky-price">${document.getElementById('p-price')?.textContent || ''}</div>
+            </div>
+            <button class="pc-btn" style="padding: 12px 24px;" onclick="addCart(this, '${new URLSearchParams(window.location.search).get('id') || 'generic'}')">ADD TO CART</button>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', stickyBarHTML);
+
+    const bar = document.getElementById('sticky-bar');
+    const cartBtn = document.querySelector('.add-cart-btn');
+
+    window.addEventListener('scroll', () => {
+        if (window.innerWidth > 768) return;
+        const trigger = cartBtn ? cartBtn.getBoundingClientRect().top + window.scrollY : 500;
+        if (window.scrollY > trigger) {
+            bar.classList.add('active');
+        } else {
+            bar.classList.remove('active');
+        }
+    });
 }

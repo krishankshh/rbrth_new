@@ -54,9 +54,10 @@ function populateProduct(p) {
   // Variants
   const variantsContainer = document.getElementById('p-variants');
   variantsContainer.innerHTML = p.variants.map((v, index) => `
-    <div class="vt ${index === 0 ? 'active' : ''}" onclick="selectVariant(this, '${v.image}')">
+    <div class="vt ${index === 0 ? 'active' : ''} ${v.soldOut ? 'sold-out' : ''}" 
+         onclick="selectVariant(this, '${v.image}', ${v.price}, ${v.soldOut || false})">
       <img src="${v.image}" alt="${v.name}" />
-      <div class="vt-name">${v.name}</div>
+      <div class="vt-name">${v.name} ${v.soldOut ? '(SOLD OUT)' : ''}</div>
     </div>
   `).join('');
 
@@ -86,12 +87,25 @@ function switchThumb(el, src) {
 }
 
 // Variant selection
-function selectVariant(el, src) {
+function selectVariant(el, src, price, isSoldOut = false) {
+  if (isSoldOut) return;
+
   document.querySelectorAll('.vt').forEach(v => v.classList.remove('active'));
   el.classList.add('active');
+  
   const img = document.getElementById('main-img');
   img.style.opacity = '0';
   setTimeout(() => { img.src = src; img.style.opacity = '1'; }, 200);
+
+  if (price) {
+    document.getElementById('p-price').textContent = `₹${price.toLocaleString()}`;
+  }
+
+  const addBtn = document.querySelector('.add-cart-btn');
+  if (addBtn) {
+    addBtn.disabled = isSoldOut;
+    addBtn.textContent = isSoldOut ? 'SOLD OUT' : 'ADD TO CART';
+  }
 }
 
 // Add to Cart feedback (updated for persistent cart)
