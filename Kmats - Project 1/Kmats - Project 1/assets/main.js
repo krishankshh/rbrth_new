@@ -82,7 +82,45 @@ function renderBlogs() {
   `).join('');
 }
 
-window.addEventListener('DOMContentLoaded', renderBlogs);
+window.addEventListener('DOMContentLoaded', () => {
+  renderBlogs();
+  initComparison();
+});
+
+// GSAP Comparison Animation
+function initComparison() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const continuous = document.querySelector(".comparisonSection.continuous");
+  if (continuous) {
+    const layers = continuous.querySelectorAll(".afterImage");
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: continuous,
+        start: "center center",
+        // Multi-image duration: scroll height is 3x width for 3 reveals
+        end: () => "+=" + (continuous.offsetWidth * 3),
+        scrub: true,
+        pin: true,
+        anticipatePin: 1
+      },
+      defaults: { ease: "none" }
+    });
+
+    layers.forEach((layer, i) => {
+      const img = layer.querySelector("img");
+      // Explicitly set z-index and initial state
+      layer.style.zIndex = i + 2;
+      
+      tl.fromTo(layer, { xPercent: 100, x: 0 }, { xPercent: 0 })
+        .fromTo(img, { xPercent: -100, x: 0 }, { xPercent: 0 }, "<");
+    });
+
+    ScrollTrigger.refresh();
+  }
+}
 
 function addCart(btn, productId) {
   addToCart(productId || 'generic-product');
