@@ -91,6 +91,8 @@ window.addEventListener('DOMContentLoaded', () => {
   injectBackToTop();
   updateNavIcons();
   initNewsletter();
+  initPasswordToggle();
+  initFaqForm();
   if (window.location.pathname.includes('product.html')) {
     setTimeout(initStickyBar, 500);
   }
@@ -482,4 +484,32 @@ function toggleWishlist(id) {
 
 function updateWishlistCount() {
     // Optional: add a count in header
+}
+
+function initPasswordToggle() {
+    const toggles = document.querySelectorAll('.password-toggle');
+    toggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const input = this.previousElementSibling;
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    });
+}
+
+function initFaqForm() {
+    const form = document.getElementById('faq-contact-form');
+    const success = document.getElementById('faq-success');
+    if (!form || !success) return;
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        form.style.display = 'none';
+        success.style.display = 'block';
+        setTimeout(() => {
+            form.reset();
+        }, 500);
+    });
 }

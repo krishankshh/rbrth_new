@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQs | RBRTH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-left">
+      <a href="index.html#videos" class="nav-link">Shop by Videos</a>
+      <a href="collection.html" class="nav-link">Shop All</a>
+    </div>
+    <div class="nav-logo"><a href="index.html"><img src="assets/logo.png" alt="RBRTH" /></a></div>
+    <div class="nav-right">
+      <a href="faq.html" class="nav-link">FAQs</a>
+      <a href="cart.html" class="nav-cart" id="cart-btn">Cart (0)</a>
+    </div>
+  </nav>
+
+  <div class="page-container">
+    <div class="page-header">
+      <h1 class="page-title">Frequently Asked Questions</h1>
+      <p class="page-subtitle">Everything you need to know about the RBRTH state</p>
+    </div>
+
+    <div style="max-width: 800px; margin: 0 auto;">
+      <div class="fi">
+        <button class="fq" onclick="tFaq(this)">What even are RBRTH Supermints?<span class="pl">+</span></button>
+        <div class="fa">They're not candy. They're not a gimmick. They're 12 precisely dosed mints carrying 50mg natural caffeine, 100mg L-Theanine, 300mg L-Tyrosine, Vitamin B6, and B12 — everything your brain needs to get sharp and stay there. No fluff. No filler. Just the stack that works.</div>
+      </div>
+      <div class="fi">
+        <button class="fq" onclick="tFaq(this)">Will these make me feel like I'm on something?<span class="pl">+</span></button>
+        <div class="fa">No. And that's exactly the point. RBRTH doesn't chase the spike. It chases the state — that quiet, locked-in zone where your thoughts stop scattering and your work starts flowing. Mental clarity isn't a high. It's just you, finally operating at your actual capacity.</div>
+      </div>
+      <div class="fi">
+        <button class="fq" onclick="tFaq(this)">Why do they taste bitter?<span class="pl">+</span></button>
+        <div class="fa">Because caffeine is bitter. We know that. And instead of drowning it in sugar, artificial sweeteners, or flavour masking agents to trick your tongue, we chose to keep the formula honest. The bitterness is the proof — nothing's been hidden, nothing's been added to fool you. If you can handle the truth in your life, you can handle it in your mint.</div>
+      </div>
+      <div class="fi">
+        <button class="fq" onclick="tFaq(this)">How is this different from my morning coffee or an energy drink?<span class="pl">+</span></button>
+        <div class="fa">Coffee is a ritual. Energy drinks are a gamble. RBRTH is a tool. No crash, no jitters, no liquid dependency, no 500ml can you have to finish in one go. One mint, slipped in discreetly — and you're in. The L-Theanine in every mint works alongside the caffeine to smooth out the edge, so what you get is calm focus, not wired chaos.</div>
+      </div>
+      <div class="fi">
+        <button class="fq" onclick="tFaq(this)">When should I take one?<span class="pl">+</span></button>
+        <div class="fa">Before a deep work session. Before a lecture you actually want to retain. Before a meeting that matters. Before a workout where your head needs to be as present as your body. RBRTH is for the moments where being half-present isn't an option.</div>
+      </div>
+      <div class="fi">
+        <button class="fq" onclick="tFaq(this)">Is ₹350–₹399 worth it for 12 mints?<span class="pl">+</span></button>
+        <div class="fa">That's roughly ₹30 per focused session. Compare that to the overpriced café coffee you're buying for the ambience, or the energy drink you're finishing out of habit. RBRTH charges for what's actually inside — a clean, functional ingredient stack with zero unnecessary additions. You're not paying for a brand mascot. You're paying for the formula.</div>
+      </div>
+      <div class="fi">
+        <button class="fq" onclick="tFaq(this)">Who is this really for?<span class="pl">+</span></button>
+        <div class="fa">The student pulling a late night who refuses to go foggy. The founder who has back-to-back calls and needs to actually think, not just talk. The professional who's tired of the 3pm slump owning them. The gym-goer who trains their body but knows the mind drives everything. If you take your output seriously, RBRTH was built for you.</div>
+      </div>
+      <div class="fi">
+        <button class="fq" onclick="tFaq(this)">Where can I buy RBRTH Supermints?<span class="pl">+</span></button>
+        <div class="fa">Exclusively on our website — because we'd rather own the relationship with you directly than let a middleman water it down. Order online, get it delivered, and stop letting your focus be a coin toss.</div>
+      </div>
+      <div class="fi">
+        <button class="fq" onclick="tFaq(this)">What is the RBRTH philosophy?<span class="pl">+</span></button>
+        <div class="fa">RBRTH believes in unlocking your true potential through scientifically-backed, clean supplements. We focus on clarity, performance, and sustained energy without compromise. Our products are designed for those who demand excellence from themselves and their tools.</div>
+      </div>
+    </div>
+
+    <!-- Simple Contact Form -->
+    <div class="faq-contact">
+      <h2 class="faq-contact-title">Still have questions?</h2>
+      <p class="faq-contact-subtitle">Drop us a message and our elite support team will get back to you.</p>
+      <div class="faq-contact-form-container">
+        <form id="faq-contact-form" class="auth-form">
+          <input type="text" class="auth-input" placeholder="Name" required>
+          <input type="email" class="auth-input" placeholder="Email" required>
+          <textarea class="auth-input" placeholder="How can we help?" rows="4" required></textarea>
+          <button type="submit" class="pc-btn auth-submit-btn">Send Message</button>
+        </form>
+        <div id="faq-success" class="faq-success-msg" style="display:none;">
+          <div class="success-icon" style="font-size: 48px; color: #16a34a; margin-bottom: 16px;">✓</div>
+          <p style="font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; text-transform: uppercase;">Message sent! We'll be in touch soon.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="fg">
+      <div><div class="fmark">///</div></div>
+      <div>
+        <p class="fch">Company</p>
+        <ul class="fl">
+          <li><a href="shipping.html">Shipping Policy</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="refund.html">Refund Policy</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="index.html#blog">Blog</a></li>
+          <li><a href="index.html#faq">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="fch">Follow</p>
+        <div class="fsl">
+          <a href="#">Instagram</a>
+          <a href="#">Twitter</a>
+          <a href="#">YouTube</a>
+        </div>
+      </div>
+      <div>
+        <p class="fsub-lbl">Subscribe</p>
+        <div class="fsub-row">
+          <input type="email" placeholder="your@email.com" />
+          <button type="button">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="fbot">
+      <span class="fco">RBRTH™ | Website Created by 
+        <a href="https://kmats.in/" class="kmats-link" target="_blank">
+          <img src="assets/kmatslogo.png" alt="Kmats" class="kmats-logo-glow" />
+        </a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

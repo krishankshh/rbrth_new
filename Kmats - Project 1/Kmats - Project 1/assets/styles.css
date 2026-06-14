@@ -572,15 +572,29 @@ nav {
   margin-bottom: 28px;
 }
 
+.faq-list-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .fi {
   background: #f5deb3;
   border-radius: 4px;
   margin-bottom: 8px;
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  margin-bottom: 16px;
   overflow: hidden;
+  transition: border-color 0.3s ease;
 }
 
 .fi:last-of-type {
   margin-bottom: 0;
+}
+
+.fi:hover, .fi.open {
+  border-color: var(--red);
 }
 
 .fq {
@@ -588,14 +602,17 @@ nav {
   background: none;
   border: none;
   color: #000;
+  color: #fff;
   text-align: left;
   padding: 18px 20px;
+  padding: 24px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -605,6 +622,8 @@ nav {
 .fq .pl {
   font-size: 22px;
   color: #000;
+  font-size: 24px;
+  color: var(--red);
   flex-shrink: 0;
   transition: transform 0.3s;
   line-height: 1;
@@ -676,17 +695,22 @@ nav {
 
 .fa {
   font-size: 13px;
+  font-size: 14px;
   line-height: 1.7;
   color: #333;
+  color: rgba(255, 255, 255, 0.6);
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease, padding 0.3s;
   padding: 0 20px;
+  padding: 0 30px;
 }
 
 .fi.open .fa {
-  max-height: 200px;
+  max-height: 400px;
   padding: 0 20px 16px;
+  max-height: 600px;
+  padding: 0 30px 30px;
 }
 
 .faq-all {
@@ -707,6 +731,33 @@ nav {
 
 .faq-all:hover {
   color: var(--red);
+}
+
+/* FAQ Contact Form Styles */
+.faq-contact {
+  margin-top: 80px;
+  padding-top: 80px;
+  border-top: 1px solid #1a1a1a;
+  text-align: center;
+}
+
+.faq-contact-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.faq-contact-subtitle {
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 40px;
+  font-size: 14px;
+}
+
+.faq-contact-form-container {
+  max-width: 450px;
+  margin: 0 auto;
 }
 
 .vt.active { border-color: var(--red); }
@@ -1257,6 +1308,7 @@ footer {
   padding: 18px;
   color: #fff;
   font-family: 'Barlow', sans-serif;
+  width: 100%;
   border-radius: 4px;
   outline: none;
   transition: border-color 0.3s ease;
@@ -1264,6 +1316,38 @@ footer {
 
 .auth-input:focus {
   border-color: var(--red);
+}
+
+textarea.auth-input {
+  height: auto;
+  resize: vertical;
+}
+
+.auth-submit-btn {
+  padding: 18px !important;
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper .auth-input {
+  padding-right: 50px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.4);
+  transition: color 0.3s;
+}
+
+.password-toggle:hover {
+  color: #fff;
 }
 
 .auth-links {
